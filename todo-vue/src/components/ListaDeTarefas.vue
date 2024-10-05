@@ -1,5 +1,5 @@
 <script setup>
-    const props = defineProps(['tarefas']);
+    const props = defineProps(['tarefas', 'filtro']);
 </script>
 
 <template>
@@ -10,6 +10,9 @@
             <label :class="{ done: tarefa.finalizada }" class="ms-3" :for="tarefa.titulo">
                 {{ tarefa.titulo }}
             </label>
+        </li>
+        <li class="list-group-item" v-if="props.filtro === 'pendentes' && props.tarefas.filter(trf => !trf.finalizada).length === 0">
+            Não existem tarefas pendentes
         </li>
     </ul>
 </template>
